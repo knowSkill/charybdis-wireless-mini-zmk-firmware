@@ -12,6 +12,27 @@
 #include "behaviors.dtsi"
 #include "combos.dtsi"
 
+/* for underglow */
+#include <dt-bindings/led/led.h>
+
+/ {
+    led_strip: ws2812 {
+        compatible = "worldsemi,ws2812-gpio";
+        label = "WS2812";
+        chain-length = <12>;
+        color-order = "GRB";
+        in-gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>; // <- replace 13 with your actual DIN pin
+        color-mapping = <LED_COLOR_ID_GRB>;
+        status = "okay";
+    };
+
+    chosen {
+        zmk,underglow = &led_strip;
+    };
+};
+
+
+
 / {
 /* --- KEYMAP CONFIG --- */
 // ╭──────┬──────┬──────┬──────┬──────┬──────╮  ╭──────┬──────┬──────┬──────┬──────┬──────╮

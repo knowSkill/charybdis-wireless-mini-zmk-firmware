@@ -180,6 +180,16 @@ jobs:
           # tree $GITHUB_WORKSPACE
 
           echo "🛠 Kicking off the firmware build..."
+
+          echo "🛠 Build Context:"
+          echo "→ BUILD_DIR       : $BUILD_DIR"
+          echo "→ Board (BD)      : $BD"
+          echo "→ Shield (SH)     : $SH"
+          echo "→ Config Dir      : $CONFIG_DIR"
+          echo "→ KEYMAP_OPTION   : $KEYMAP_OPTION"
+          echo "→ SNIPPET_OPTION  : $SNIPPET_OPTION"
+          echo "→ west build -p -d \"$BUILD_DIR\" -b \"$BD\" -- -DZMK_CONFIG=$CONFIG_DIR -DSHIELD=$SH $KEYMAP_OPTION $SNIPPET_OPTION"
+
           west build -p \
             -d "$BUILD_DIR" \
             -b "$BD" \

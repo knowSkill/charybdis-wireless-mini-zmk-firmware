@@ -122,6 +122,9 @@ rm -rf /workspaces/zmk/firmwares/*
 
 for shield in "${shields[@]}"; do
 
+  echo -e "\n[\e[31mshield\e[0m] : ${shield}"
+  [[ "$shield" != "charybdis_bt" ]] && continue
+
   # Set up Sandbox
   setup_sandbox "$shield"
   cd "$BUILD_REPO/zmk"
@@ -164,6 +167,11 @@ for shield in "${shields[@]}"; do
 
   for target in "${shield_targets[@]}"; do
     for keymap in "${keymaps[@]}"; do
+
+      echo -e "\n[\e[31mtarget\e[0m] : ${target}"
+      echo -e   "[\e[31mkeymap\e[0m] : ${keymap}\n"
+      [[ "$keymap" != "qwerty" ]] && continue
+
       board="nice_nano_v2"
       artifact_name="${target}-${keymap}-${board}-zmk"
       BUILD_DIR=$(mktemp -d)
